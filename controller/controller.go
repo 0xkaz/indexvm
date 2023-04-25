@@ -6,6 +6,7 @@ package controller
 import (
 	"context"
 	"fmt"
+	"log"
 
 	ametrics "github.com/ava-labs/avalanchego/api/metrics"
 	"github.com/ava-labs/avalanchego/database"
@@ -173,8 +174,16 @@ func (c *Controller) Accepted(ctx context.Context, blk *chain.StatelessBlock) er
 			switch tx.Action.(type) {
 			case *actions.Index:
 				c.metrics.itemsIndexed.Inc()
+				log.Printf("c.metrics.itemsIndexed: %v", c.metrics.itemsIndexed)
 			case *actions.Unindex:
 				c.metrics.itemsUnindexed.Inc()
+				log.Printf("c.metrics.itemsUnindexed: %v", c.metrics.itemsUnindexed)
+			case *actions.SetData:
+				c.metrics.itemsSetData.Inc()
+				log.Printf("c.metrics.itemsSetData: %v", c.metrics.itemsSetData)
+			case *actions.AddData:
+				c.metrics.itemsAddData.Inc()
+				log.Printf("c.metrics.itemsAddData: %v", c.metrics.itemsAddData)
 			}
 		}
 	}

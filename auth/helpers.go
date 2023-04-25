@@ -6,6 +6,8 @@ package auth
 import (
 	"context"
 
+	"log"
+
 	"github.com/ava-labs/hypersdk/chain"
 	"github.com/ava-labs/hypersdk/crypto"
 	"github.com/ava-labs/indexvm/consts"
@@ -14,6 +16,7 @@ import (
 )
 
 func GetActor(auth chain.Auth) crypto.PublicKey {
+	log.Printf("Get: %T", auth)
 	switch a := auth.(type) {
 	case *Direct:
 		return a.Signer
@@ -25,6 +28,7 @@ func GetActor(auth chain.Auth) crypto.PublicKey {
 }
 
 func GetSigner(auth chain.Auth) crypto.PublicKey {
+	log.Printf("GetSigner: %T", auth)
 	switch a := auth.(type) {
 	case *Direct:
 		return a.Signer
@@ -43,6 +47,7 @@ func Authorized(
 	signer crypto.PublicKey,
 	actorPays bool,
 ) error {
+	log.Printf("Authorized: %T", action)
 	actionPerms, miscPerms, err := storage.GetPermissions(ctx, db, actor, signer)
 	if err != nil {
 		return err

@@ -50,6 +50,11 @@ type Genesis struct {
 
 	// Allocations
 	CustomAllocation []*CustomAllocation `json:"customAllocation"`
+
+	// test
+	GlobalState map[string]interface{} `json:"globalState"`
+	// test
+	GlobalString string `json:"globalString"`
 }
 
 func Default() *Genesis {
@@ -74,6 +79,7 @@ func Default() *Genesis {
 		MinBlockCost:               0,
 		BlockCostChangeDenominator: 48,
 		WindowTargetBlocks:         20, // 10s
+		GlobalString:               "hello genesis",
 	}
 }
 
