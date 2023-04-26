@@ -51,8 +51,8 @@ type Genesis struct {
 	// Allocations
 	CustomAllocation []*CustomAllocation `json:"customAllocation"`
 
-	// test
-	GlobalState map[string]interface{} `json:"globalState"`
+	// // test
+	// GlobalState map[string]interface{} `json:"globalState"`
 	// test
 	GlobalString string `json:"globalString"`
 }
