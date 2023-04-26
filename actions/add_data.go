@@ -35,17 +35,19 @@ func (s *AddData) Execute(
 	unitsUsed := s.MaxUnits(r) // max units == units
 
 	if s.Content == ids.Empty {
+		// use full units even if rollback.
 		return &chain.Result{Success: false, Units: unitsUsed, Output: OutputInvalidContent}, nil
 	}
 
 	if err := storage.AddDataContent(ctx, db, s.Content, actor); err != nil {
+		// use full units even if rollback.
 		return &chain.Result{Success: false, Units: unitsUsed, Output: utils.ErrBytes(err)}, nil
 	}
 	return &chain.Result{Success: true, Units: unitsUsed}, nil
 }
 
 func (*AddData) MaxUnits(chain.Rules) uint64 {
-	return consts.IDLen
+	return consts.IDLen // 32
 }
 
 func (u *AddData) Marshal(p *codec.Packer) {

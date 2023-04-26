@@ -148,11 +148,15 @@ func (c *Controller) Initialize(
 }
 
 func (c *Controller) Rules(t int64) chain.Rules {
+	// log.Printf("Rules: %v", c.genesis.Rules(c.snowCtx.ChainID, t))
+	log.Printf("Rules: t=%v", t)
+
 	// TODO: extend with [UpgradeBytes]
 	return c.genesis.Rules(c.snowCtx.ChainID, t)
 }
 
 func (c *Controller) Accepted(ctx context.Context, blk *chain.StatelessBlock) error {
+	log.Printf("Accepted")
 	batch := c.metaDB.NewBatch()
 	defer batch.Reset()
 
@@ -192,5 +196,12 @@ func (c *Controller) Accepted(ctx context.Context, blk *chain.StatelessBlock) er
 
 func (*Controller) Rejected(context.Context, *chain.StatelessBlock) error {
 	// Do nothing
+	log.Printf("Rejected")
+	return nil
+}
+
+func (*Controller) Shutdown(context.Context) error {
+	// Do nothing
+	log.Printf("Shutdown")
 	return nil
 }

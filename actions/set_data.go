@@ -15,18 +15,15 @@ import (
 var _ chain.Action = (*SetData)(nil)
 
 type SetData struct {
-	// Content is the content to setdata
-	//
-	// This transaction will refund [Genesis.ContentStake] to the creator of the
-	// content.
 	Content ids.ID `json:"content"`
-	// Schema ids.ID `json:"schema"`
-
 }
 
 func (s *SetData) StateKeys(rauth chain.Auth) [][]byte {
 	actor := auth.GetActor(rauth)
-	return [][]byte{storage.PrefixBalanceKey(actor), storage.PrefixContentKey(s.Content)}
+	return [][]byte{
+		storage.PrefixBalanceKey(actor),
+		storage.PrefixContentKey(s.Content),
+	}
 	// keys := [][]byte{storage.PrefixBalanceKey(actor)}
 	// if i.Parent != ids.Empty {
 	// 	keys = append(keys, storage.PrefixContentKey(s.Parent))
