@@ -32,6 +32,7 @@ func init() {
 		// test
 		consts.ActionRegistry.Register(&actions.SetData{}, actions.UnmarshalSetData),
 		consts.ActionRegistry.Register(&actions.AddData{}, actions.UnmarshalSetData),
+		consts.ActionRegistry.Register(&actions.Spend{}, actions.UnmarshalSpend),
 
 		// TODO: multi-sig
 	)

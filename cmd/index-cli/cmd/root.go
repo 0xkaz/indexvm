@@ -43,6 +43,8 @@ func init() {
 		transferCmd,
 		networkCmd,
 		watchCmd,
+		burnCmd,
+		balanceCmd,
 	)
 
 	rootCmd.PersistentFlags().StringVar(
