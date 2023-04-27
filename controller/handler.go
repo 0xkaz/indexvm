@@ -64,6 +64,7 @@ type BalanceReply struct {
 	Exists   bool   `json:"exists"`
 	Unlocked uint64 `json:"unlocked"`
 	Locked   uint64 `json:"locked"`
+	Amount   uint64 `json:"amount"` // Unlocked + Locked
 }
 
 func (h *Handler) Balance(req *http.Request, args *BalanceArgs, reply *BalanceReply) error {
@@ -81,6 +82,7 @@ func (h *Handler) Balance(req *http.Request, args *BalanceArgs, reply *BalanceRe
 	reply.Exists = l > 0
 	reply.Unlocked = u
 	reply.Locked = l
+	reply.Amount = u + l
 	return err
 }
 
