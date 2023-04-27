@@ -167,12 +167,12 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # burn 
 
 ```
-./build/index-cli burn 123 --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3
+./build/index-cli burn 123 --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3  --private-key-file .index-cli.pk
 ```
 # balance 
 
 ```
-./build/index-cli balance index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx  --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3
+./build/index-cli balance index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx  --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3 --private-key-file .index-cli.pk
 ```
 
 

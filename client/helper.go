@@ -5,6 +5,7 @@ package client
 
 import (
 	"context"
+	"log"
 
 	"github.com/ava-labs/avalanchego/ids"
 	"github.com/ava-labs/hypersdk/chain"
@@ -19,14 +20,20 @@ func (cli *Client) GenerateTransaction(
 	modifiers ...client.Modifier,
 ) (func(context.Context) error, *chain.Transaction, uint64, error) {
 	// Gather chain metadata
+	log.Printf("GenerateTransaction: action=%v", action)
+	log.Printf("GenerateTransaction: factory=%v", factory)
 	g, err := cli.Genesis(ctx)
 	if err != nil {
+		log.Printf("GenerateTransaction: err=%v", err)
 		return nil, nil, 0, err
 	}
+	log.Printf("g: %v", g)
 	_, _, chainID, err := cli.Network(ctx) // TODO: store in object to fetch less frequently
 	if err != nil {
+		log.Printf("GenerateTransaction: err=%v", err)
 		return nil, nil, 0, err
 	}
+	log.Printf("chainID: %v", chainID)
 	return cli.Client.GenerateTransaction(
 		ctx,
 		&Parser{chainID, g},

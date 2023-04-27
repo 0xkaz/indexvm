@@ -1,11 +1,16 @@
 package cmd
 
 import (
+	"context"
 	"log"
 
 	"fmt"
 
+	"github.com/ava-labs/hypersdk/crypto"
 	hutils "github.com/ava-labs/hypersdk/utils"
+	"github.com/ava-labs/indexvm/actions"
+	"github.com/ava-labs/indexvm/auth"
+	"github.com/ava-labs/indexvm/client"
 	"github.com/spf13/cobra"
 )
 
@@ -17,30 +22,43 @@ var burnCmd = &cobra.Command{
 
 func burnFunc(_ *cobra.Command, args []string) error {
 	log.Printf("burnFunc")
+	priv, err := crypto.LoadKey(privateKeyFile)
+	if err != nil {
+		log.Printf("err: %v", err)
+		return err
+	}
+	factory := auth.NewDirectFactory(priv)
+	// log.Printf("priv: %v", priv)
 
 	amt, err := getBurnOp(args)
 	if err != nil {
 		return err
 	}
+	log.Printf("privateKeyFile: %v", privateKeyFile)
 	log.Printf("amt: %v", amt)
+	ctx := context.Background()
+	log.Printf("uri: %v", uri)
 
-	// ctx := context.Background()
-	// // cli := client.New(uri)
-	// // c := controller.New()
-	// cli := client.New(uri)
-	// networkID, subnetID, chainID, err := cli.Network(context.Background())
-	// if err != nil {
+	cli := client.New(uri)
+	submit, tx, _, err := cli.GenerateTransaction(ctx, &actions.Spend{
+		Amount: amt,
+	}, factory)
+
+	if err != nil {
+		log.Printf("err: %v", err)
+		return err
+	}
+	log.Printf("submit: %v", submit)
+	log.Printf("tx: %v", tx)
+	//
+	// if err := submit(ctx); err != nil {
 	// 	return err
 	// }
-	// log.Printf("networkID=%d subnetID=%s chainID=%s", networkID, subnetID, chainID)
-	// u,l,e,err:= cli.Balance(ctx, addr)
-	// u, l, e, err := cli.Balance(ctx, fmt.Sprintf("%v", addr))
-	// // u, l, err := storage.GetBalanceFromState(ctx, c.inner.ReadState, addr)
-	// if err != nil {
-	// 	log.Printf("")
+	// // wait for transactions
+	// if err := cli.WaitForTransaction(ctx, tx.ID()); err != nil {
 	// 	return err
 	// }
-	// log.Printf("u: %v, l: %v, e: %v ", u, l, e)
+	// color.Green("burned %d", amt)
 
 	return nil
 }

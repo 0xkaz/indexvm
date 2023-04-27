@@ -149,7 +149,7 @@ func (c *Controller) Initialize(
 
 func (c *Controller) Rules(t int64) chain.Rules {
 	// log.Printf("Rules: %v", c.genesis.Rules(c.snowCtx.ChainID, t))
-	log.Printf("Rules: t=%v", t)
+	// log.Printf("Rules: t=%v", t)
 
 	// TODO: extend with [UpgradeBytes]
 	return c.genesis.Rules(c.snowCtx.ChainID, t)
