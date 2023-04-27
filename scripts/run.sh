@@ -90,7 +90,10 @@ find /tmp/avalanchego-v${VERSION}
 # Always create allocations (linter doesn't like tab)
 echo "creating allocations file"
 cat <<EOF > /tmp/allocations.json
-[{"address":"index1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsqrawg5", "balance":1000000000000}]
+[
+  {"address":"index1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsqrawg5", "balance":1000000000000},
+  {"address":"index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx", "balance":1000000000000}
+]
 EOF
 
 GENESIS_PATH=$2
@@ -114,7 +117,7 @@ rm -f /tmp/indexvm.config
 cat <<EOF > /tmp/indexvm.config
 {
   "mempoolSize": 10000000,
-  "mempoolExemptPayers":["index1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsqrawg5"],
+  "mempoolExemptPayers":["index1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsqrawg5", "index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx"],
   "parallelism": 5,
   "logLevel": "${LOGLEVEL}",
   "stateSyncServerDelay": ${STATESYNC_DELAY}

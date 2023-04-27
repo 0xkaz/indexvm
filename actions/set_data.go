@@ -20,10 +20,7 @@ type SetData struct {
 
 func (s *SetData) StateKeys(rauth chain.Auth) [][]byte {
 	actor := auth.GetActor(rauth)
-	return [][]byte{
-		storage.PrefixBalanceKey(actor),
-		storage.PrefixContentKey(s.Content),
-	}
+	return [][]byte{storage.PrefixBalanceKey(actor), storage.PrefixContentKey(s.Content)}
 	// keys := [][]byte{storage.PrefixBalanceKey(actor)}
 	// if i.Parent != ids.Empty {
 	// 	keys = append(keys, storage.PrefixContentKey(s.Parent))
