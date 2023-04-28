@@ -54,10 +54,18 @@ func Authorized(
 	actorPays bool,
 ) error {
 	log.Printf("Authorized: %T", action)
+
+	log.Printf("Authorized: actor=%v", actor)
+	log.Printf("Authorized: signer=%v", signer)
+
 	actionPerms, miscPerms, err := storage.GetPermissions(ctx, db, actor, signer)
 	if err != nil {
 		return err
 	}
+
+	log.Printf("Authorized: miscPerms: %d", miscPerms)
+	log.Printf("Authorized: actionPerms: %d", actionPerms)
+
 	index, _, exists := consts.ActionRegistry.LookupType(action)
 	if !exists {
 		log.Printf("Authorized: consts.ActionRegistry.LookupType")
@@ -65,7 +73,6 @@ func Authorized(
 	}
 
 	if !utils.CheckBit(actionPerms, index) {
-
 		log.Printf("Authorized: utils.CheckBit")
 		log.Printf("Authorized: actionPerms: %d", actionPerms)
 		log.Printf("Authorized: index: %d", index)
@@ -73,8 +80,6 @@ func Authorized(
 	}
 	if actorPays && !utils.CheckBit(miscPerms, actorPaysBit) {
 		log.Printf("Authorized: actorPays && !utils.CheckBit")
-		log.Printf("Authorized: miscPerms: %d", miscPerms)
-		log.Printf("Authorized: actionPerms: %d", index)
 		log.Printf("Authorized: actorPaysBit: %d", actorPaysBit)
 		log.Printf("Authorized: actorPays: %v", actorPays)
 

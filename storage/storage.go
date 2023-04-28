@@ -40,6 +40,7 @@ const (
 	balancePrefix     = 0x0
 	permissionsPrefix = 0x1
 	contentPrefix     = 0x2
+	testPrefix        = 0xF
 )
 
 var (
