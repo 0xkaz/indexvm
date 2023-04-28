@@ -30,6 +30,14 @@ func burn2Func(_ *cobra.Command, args []string) error {
 		return err
 	}
 	factory := auth.NewDirectFactory(priv)
+
+	ctx := context.Background()
+	currentChainID, priv, factory, cli, err := defaultActor()
+	if err != nil {
+		return err
+	}
+	log.Printf("currentChainID: %v", currentChainID)
+
 	// log.Printf("priv: %v", priv)
 	to, value, err := getBurn2Op(args)
 	if err != nil {
@@ -43,7 +51,7 @@ func burn2Func(_ *cobra.Command, args []string) error {
 	log.Printf("privateKeyFile: %v", privateKeyFile)
 	log.Printf("to: %v", to)
 	log.Printf("value: %v", value)
-	ctx := context.Background()
+
 	log.Printf("uri: %v", uri)
 
 	cli := client.New(uri)

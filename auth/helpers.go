@@ -53,10 +53,11 @@ func Authorized(
 	signer crypto.PublicKey,
 	actorPays bool,
 ) error {
-	log.Printf("Authorized: %T", action)
+	log.Printf("Authorized: action=%T", action)
 
 	log.Printf("Authorized: actor=%v", actor)
 	log.Printf("Authorized: signer=%v", signer)
+	log.Printf("Authorized: actorPays=%v", actorPays)
 
 	actionPerms, miscPerms, err := storage.GetPermissions(ctx, db, actor, signer)
 	if err != nil {
@@ -68,20 +69,21 @@ func Authorized(
 
 	index, _, exists := consts.ActionRegistry.LookupType(action)
 	if !exists {
-		log.Printf("Authorized: consts.ActionRegistry.LookupType")
+		log.Printf("Authorized: consts.ActionRegistry.LookupType. exists==false ")
 		return ErrActionMissing
 	}
 
+	log.Printf("Authorized: index: %d", index)
+
 	if !utils.CheckBit(actionPerms, index) {
-		log.Printf("Authorized: utils.CheckBit")
-		log.Printf("Authorized: actionPerms: %d", actionPerms)
-		log.Printf("Authorized: index: %d", index)
+		log.Printf("Authorized: utils.CheckBit == false ")
 		return ErrNotAllowed
 	}
 	if actorPays && !utils.CheckBit(miscPerms, actorPaysBit) {
-		log.Printf("Authorized: actorPays && !utils.CheckBit")
+		log.Printf("!utils.CheckBit")
+		log.Printf("Authorized: miscPerms: %d", miscPerms)
 		log.Printf("Authorized: actorPaysBit: %d", actorPaysBit)
-		log.Printf("Authorized: actorPays: %v", actorPays)
+		// log.Printf("Authorized: actorPays: %v", actorPays)
 
 		return ErrNotAllowed
 	}
