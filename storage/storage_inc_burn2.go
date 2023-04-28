@@ -7,8 +7,9 @@ import (
 	"errors"
 	"log"
 
-	"github.com/ava-labs/avalanchego/database"
 	"github.com/ava-labs/hypersdk/chain"
+
+	"github.com/ava-labs/avalanchego/database"
 	"github.com/ava-labs/hypersdk/crypto"
 )
 
@@ -52,11 +53,13 @@ func IncBurn2Count(
 	log.Printf("bytes2uint64(v)=%d", bytes2uint64(v))
 
 	// db.Insert(ctx, k, []byte{val})
+	// err = db.Insert(ctx, k, uint64toBytes(val+bytes2uint64(v)))
 	err = db.Insert(ctx, k, uint64toBytes(val+bytes2uint64(v)))
 	if err != nil {
 		log.Printf("err=%v", err)
 		return 0, err
 	}
+	log.Printf("val + bytes2uint64(v): %d", val+bytes2uint64(v))
 	// return incBurn2Count(ctx, db, contentID, pk)
 	return val + bytes2uint64(v), nil
 }
