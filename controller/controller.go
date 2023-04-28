@@ -188,6 +188,12 @@ func (c *Controller) Accepted(ctx context.Context, blk *chain.StatelessBlock) er
 			case *actions.AddData:
 				c.metrics.itemsAddData.Inc()
 				log.Printf("c.metrics.itemsAddData: %v", c.metrics.itemsAddData)
+			case *actions.Spend:
+				c.metrics.itemsSpend.Inc()
+				log.Printf("c.metrics.itemsSpend: %v", c.metrics.itemsSpend)
+			case *actions.Burn2:
+				c.metrics.itemsAddData.Inc()
+				log.Printf("c.metrics.itemsAddData: %v", c.metrics.itemsAddData)
 			}
 		}
 	}

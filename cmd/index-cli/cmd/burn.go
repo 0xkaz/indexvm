@@ -48,12 +48,13 @@ func burnFunc(_ *cobra.Command, args []string) error {
 		log.Printf("err: %v", err)
 		return err
 	}
-	log.Printf("submit: %v", submit)
+	log.Printf("submit..")
 	log.Printf("tx: %v", tx)
 	//
-	// if err := submit(ctx); err != nil {
-	// 	return err
-	// }
+	if err := submit(ctx); err != nil {
+		log.Printf("submit err=%v", err)
+		return err
+	}
 	// // wait for transactions
 	// if err := cli.WaitForTransaction(ctx, tx.ID()); err != nil {
 	// 	return err

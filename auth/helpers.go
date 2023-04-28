@@ -16,13 +16,16 @@ import (
 )
 
 func GetActor(auth chain.Auth) crypto.PublicKey {
-	log.Printf("Get: %T", auth)
+	log.Printf("GetActor: %T", auth)
 	switch a := auth.(type) {
 	case *Direct:
+		log.Printf("GetActor Direct")
 		return a.Signer
 	case *Delegate:
+		log.Printf("GetActor Delegate")
 		return a.Actor
 	default:
+		log.Printf("GetActor else")
 		return crypto.EmptyPublicKey
 	}
 }
@@ -31,10 +34,13 @@ func GetSigner(auth chain.Auth) crypto.PublicKey {
 	log.Printf("GetSigner: %T", auth)
 	switch a := auth.(type) {
 	case *Direct:
+		log.Printf("GetSigner Direct")
 		return a.Signer
 	case *Delegate:
+		log.Printf("GetSigner Signer")
 		return a.Signer
 	default:
+		log.Printf("GetSigner else")
 		return crypto.EmptyPublicKey
 	}
 }
@@ -54,12 +60,24 @@ func Authorized(
 	}
 	index, _, exists := consts.ActionRegistry.LookupType(action)
 	if !exists {
+		log.Printf("Authorized: consts.ActionRegistry.LookupType")
 		return ErrActionMissing
 	}
+
 	if !utils.CheckBit(actionPerms, index) {
+
+		log.Printf("Authorized: utils.CheckBit")
+		log.Printf("Authorized: actionPerms: %d", actionPerms)
+		log.Printf("Authorized: index: %d", index)
 		return ErrNotAllowed
 	}
 	if actorPays && !utils.CheckBit(miscPerms, actorPaysBit) {
+		log.Printf("Authorized: actorPays && !utils.CheckBit")
+		log.Printf("Authorized: miscPerms: %d", miscPerms)
+		log.Printf("Authorized: actionPerms: %d", index)
+		log.Printf("Authorized: actorPaysBit: %d", actorPaysBit)
+		log.Printf("Authorized: actorPays: %v", actorPays)
+
 		return ErrNotAllowed
 	}
 	return nil

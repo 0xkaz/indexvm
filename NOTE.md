@@ -159,7 +159,10 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # network 
 
 ```
+
 ./build/index-cli watch --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3
+
+
 ```
 
 
@@ -167,7 +170,10 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # burn 
 
 ```
-./build/index-cli burn 123 --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3  --private-key-file .index-cli.pk
+
+./build/index-cli burn 123 --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3  --private-key-file  .index-cli.pk
+
+
 ```
 # balance 
 

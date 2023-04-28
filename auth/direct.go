@@ -5,6 +5,7 @@ package auth
 
 import (
 	"context"
+	"log"
 
 	"github.com/ava-labs/hypersdk/chain"
 	"github.com/ava-labs/hypersdk/codec"
@@ -53,7 +54,9 @@ func (d *Direct) Verify(
 ) (uint64, error) {
 	// Could have modified perms before doing a simple signature so we must check
 	// to make sure we are still authorized to act on behalf of [Signer]
+	log.Printf("Direct.Verify")
 	if err := Authorized(ctx, db, action, d.Signer, d.Signer, true); err != nil {
+		log.Printf("Direct.Verify: Authorized failed: %v", err)
 		return 0, err
 	}
 	return d.MaxUnits(r), nil

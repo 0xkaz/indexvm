@@ -5,6 +5,7 @@ package auth
 
 import (
 	"context"
+	"log"
 
 	"github.com/ava-labs/hypersdk/chain"
 	"github.com/ava-labs/hypersdk/codec"
@@ -65,6 +66,7 @@ func (d *Delegate) Verify(
 	db chain.Database,
 	action chain.Action,
 ) (uint64, error) {
+	log.Printf("Delegate.Verify")
 	if d.Actor == d.Signer {
 		return 0, ErrActorEqualsSigner
 	}
@@ -72,7 +74,12 @@ func (d *Delegate) Verify(
 	//
 	// Note: actor and signer equivalence does not mean an action is allowed (key
 	// could have been rotated)
+	log.Printf("d.ActorPays: %v", d.ActorPays)
+	log.Printf("d.Signer: %v", d.Signer)
+	log.Printf("d.Actor: %v", d.Actor)
+	log.Printf("action: %v", action)
 	if err := Authorized(ctx, db, action, d.Actor, d.Signer, d.ActorPays); err != nil {
+		log.Printf("Delegate.Verify: Authorized failed: %s", err)
 		return 0, err
 	}
 	return d.MaxUnits(r), nil

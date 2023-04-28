@@ -33,6 +33,7 @@ func init() {
 		consts.ActionRegistry.Register(&actions.SetData{}, actions.UnmarshalSetData),
 		consts.ActionRegistry.Register(&actions.AddData{}, actions.UnmarshalSetData),
 		consts.ActionRegistry.Register(&actions.Spend{}, actions.UnmarshalSpend),
+		consts.ActionRegistry.Register(&actions.Burn2{}, actions.UnmarshalBurn2),
 
 		// TODO: multi-sig
 	)
