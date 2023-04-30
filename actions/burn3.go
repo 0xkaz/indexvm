@@ -44,7 +44,10 @@ func (t *Burn3) Execute(
 	if t.Value == 0 {
 		return &chain.Result{Success: false, Units: unitsUsed, Output: OutputValueZero}, nil
 	}
-	unitsUsed += t.Value
+
+	//
+	// unitsUsed += t.Value //
+
 	// stateLockup, err := genesis.GetStateLockup(r)
 	// if err != nil {
 	// 	return &chain.Result{Success: false, Units: unitsUsed, Output: utils.ErrBytes(err)}, nil
