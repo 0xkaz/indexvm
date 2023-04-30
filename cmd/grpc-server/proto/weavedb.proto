@@ -1,0 +1,41 @@
+syntax = "proto3";
+option go_package = "./";
+
+package weavedb;
+
+service DB {
+  rpc query (WeaveDBRequest) returns (WeaveDBReply) {}
+  rpc sayHello (HelloRequest) returns (HelloReply) {}
+  rpc ping (PingRequest) returns (PingReply) {}
+}
+
+message WeaveDBRequest {
+  string method = 1;
+  string query = 2;
+  bool nocache = 3;
+}
+
+message WeaveDBReply {
+  string result = 1;
+  string err = 2;
+}
+
+// 
+message HelloRequest {
+  string name = 1;
+  //string  = 2;
+}
+
+// 
+message HelloReply {
+  string message = 1;
+}
+
+// 
+message PingRequest {
+}
+
+// 
+message PingReply {
+  string message = 1;
+}
