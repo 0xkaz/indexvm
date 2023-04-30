@@ -19,6 +19,7 @@ func GetActor(auth chain.Auth) crypto.PublicKey {
 	log.Printf("GetActor: %T", auth)
 	switch a := auth.(type) {
 	case *ED25519:
+		log.Printf("GetActor ED25519")
 		return a.Signer
 	case *Direct:
 		log.Printf("GetActor Direct")
@@ -36,6 +37,7 @@ func GetSigner(auth chain.Auth) crypto.PublicKey {
 	log.Printf("GetSigner: %T", auth)
 	switch a := auth.(type) {
 	case *ED25519:
+		log.Printf("GetSigner ED25519")
 		return a.Signer
 	case *Direct:
 		log.Printf("GetSigner Direct")
