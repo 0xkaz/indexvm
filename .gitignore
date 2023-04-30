@@ -40,7 +40,7 @@ awscpu
 *.fls
 *.gz
 *.pdf
-
+node_modules
 .coverage
 
 bin/
