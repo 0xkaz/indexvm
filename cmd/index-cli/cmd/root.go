@@ -47,6 +47,7 @@ func init() {
 		burn2Cmd,
 		burn3Cmd,
 		balanceCmd,
+		balance3Cmd,
 	)
 
 	rootCmd.PersistentFlags().StringVar(

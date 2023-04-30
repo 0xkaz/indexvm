@@ -202,3 +202,16 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcG
 ./build/index-cli burn2 index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx 15 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
 ```
 
+# burn3 
+
+```
+./build/index-cli burn3 15 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
+```
+
+# balance3 
+```
+./build/index-cli balance3 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
+```
+
+
+

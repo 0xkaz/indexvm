@@ -15,7 +15,7 @@ import (
 var balance3Cmd = &cobra.Command{
 	Use:   "balance3 [options]",
 	Short: "balance3 ",
-	RunE:  balanceFunc,
+	RunE:  balance3Func,
 }
 
 func balance3Func(_ *cobra.Command, args []string) error {

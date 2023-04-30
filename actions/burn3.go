@@ -44,6 +44,7 @@ func (t *Burn3) Execute(
 	if t.Value == 0 {
 		return &chain.Result{Success: false, Units: unitsUsed, Output: OutputValueZero}, nil
 	}
+	unitsUsed += t.Value
 	// stateLockup, err := genesis.GetStateLockup(r)
 	// if err != nil {
 	// 	return &chain.Result{Success: false, Units: unitsUsed, Output: utils.ErrBytes(err)}, nil
@@ -70,7 +71,7 @@ func (t *Burn3) Execute(
 }
 
 func (*Burn3) MaxUnits(chain.Rules) uint64 {
-	return crypto.PublicKeyLen + consts.Uint64Len
+	return crypto.PublicKeyLen + consts.Uint64Len //  32 + 8 => 40
 }
 
 func (t *Burn3) Marshal(p *codec.Packer) {
