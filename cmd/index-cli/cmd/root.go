@@ -45,6 +45,7 @@ func init() {
 		watchCmd,
 		burnCmd,
 		burn2Cmd,
+		burn3Cmd,
 		balanceCmd,
 	)
 

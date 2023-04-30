@@ -46,7 +46,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/info' \
 # hello ( new handler )
 ```
 
-curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3/rpc' \
+curl --location --request POST 'http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm/rpc' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "jsonrpc":"2.0",
@@ -60,7 +60,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # test ( new handler )
 ```
 
-curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3/rpc' \
+curl --location --request POST 'http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm/rpc' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "jsonrpc":"2.0",
@@ -76,7 +76,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # setData ( new handler ) => wrong impl.
 ```
 
-curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3/rpc' \
+curl --location --request POST 'http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm/rpc' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "jsonrpc":"2.0",
@@ -92,7 +92,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # getData ( new handler ) => wrong impl.
 ```
 
-curl --location --request POST 'http://127.0.0.1:9652/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3/rpc' \
+curl --location --request POST 'http://127.0.0.1:9652/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm/rpc' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "jsonrpc":"2.0",
@@ -116,14 +116,14 @@ curl --location --request POST 'http://127.0.0.1:9652/ext/bc/2AaCeDDkUdPzqzsKm6i
 # network 
 
 ```
-./build/index-cli network --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3
+./build/index-cli network --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm
 ```
 
 
 # balance 
 
 ```
-curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3/rpc' \
+curl --location --request POST 'http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm/rpc' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "jsonrpc":"2.0",
@@ -137,7 +137,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 ```
 
 ```
-curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3/rpc' \
+curl --location --request POST 'http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm/rpc' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "jsonrpc":"2.0",
@@ -153,14 +153,14 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 # transfer 
 
 ```
-./build/index-cli transfer index1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsqrawg5 15 --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3 --private-key-file .index-cli.pk
+./build/index-cli transfer index1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsqrawg5 15 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
 ```
 
 # network 
 
 ```
 
-./build/index-cli watch --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3
+./build/index-cli watch --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm
 
 
 ```
@@ -171,20 +171,34 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6i
 
 ```
 
-./build/index-cli burn 123 --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3  --private-key-file  .index-cli.pk
+./build/index-cli burn 123 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm  --private-key-file  .index-cli.pk
+
+
 
 
 ```
 # balance 
 
 ```
-./build/index-cli balance index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx  --endpoint http://127.0.0.1:9650/ext/bc/2AaCeDDkUdPzqzsKm6iEjiVFWZFVX64izXKdgKrJnJ2FKqWpe3 --private-key-file .index-cli.pk
+./build/index-cli balance index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx  --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
 ```
 
-
+```
+./build/index-cli balance index16e9lhs57uvlug4ja5vl7m6hr83rx4ygdjtpvh8ymtvps7hpsmhzs857lds  --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
+```
 
 ## 
 
 
-150,000
+
+# burn2 
+
+```
+./build/index-cli burn2 index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx 15 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
+```
+
+
+```
+./build/index-cli burn2 index1l97kg5xvpxm0qvhyy6vuej2llg7ydlcp86euda6ewk3uuq4jks0q2rm5qx 15 --endpoint http://127.0.0.1:9650/ext/bc/qSaLNaoz36LQ9dSxFcGfHMmtxtgKiFMv2BQVxVUy2Bhp1nsjm --private-key-file .index-cli.pk
+```
 

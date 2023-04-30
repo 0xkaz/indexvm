@@ -27,7 +27,8 @@ func burnFunc(_ *cobra.Command, args []string) error {
 		log.Printf("err: %v", err)
 		return err
 	}
-	factory := auth.NewDirectFactory(priv)
+	// factory := auth.NewDirectFactory(priv)
+	factory := auth.NewED25519Factory(priv)
 	// log.Printf("priv: %v", priv)
 
 	amt, err := getBurnOp(args)

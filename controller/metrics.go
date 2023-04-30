@@ -16,6 +16,7 @@ type metrics struct {
 	itemsAddData   prometheus.Counter
 	itemsSpend     prometheus.Counter
 	itemsBurn2     prometheus.Counter
+	itemsBurn3     prometheus.Counter
 }
 
 func newMetrics(gatherer ametrics.MultiGatherer) (*metrics, error) {
@@ -50,6 +51,11 @@ func newMetrics(gatherer ametrics.MultiGatherer) (*metrics, error) {
 			Name:      "items_burn2",
 			Help:      "number of items burn2 from state",
 		}),
+		itemsBurn3: prometheus.NewCounter(prometheus.CounterOpts{
+			Namespace: "actions",
+			Name:      "items_burn3",
+			Help:      "number of items burn3 from state",
+		}),
 	}
 	r := prometheus.NewRegistry()
 	errs := wrappers.Errs{}
@@ -60,6 +66,7 @@ func newMetrics(gatherer ametrics.MultiGatherer) (*metrics, error) {
 		r.Register(m.itemsAddData),
 		r.Register(m.itemsSpend),
 		r.Register(m.itemsBurn2),
+		r.Register(m.itemsBurn3),
 		gatherer.Register("index_vm", r),
 	)
 	return m, errs.Err
