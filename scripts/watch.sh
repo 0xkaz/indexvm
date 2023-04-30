@@ -40,11 +40,6 @@ do
     echo "Building indexvm in ./build/indexvm"
     go build -o ./build/indexvm ./cmd/indexvm
 
-    # echo "Building weavedbvm in ./build/weavedbvm"
-    # go build -o ./build/weavedbvm ./cmd/weavedbvm
-
-    # echo "Building weavedb-cli in ./build/weavedb-cli"
-    # go build -o ./build/weavedb-cli ./cmd/weavedb-cli
 
     echo "Building index-cli in ./build/index-cli"
     go build -o ./build/index-cli ./cmd/index-cli
