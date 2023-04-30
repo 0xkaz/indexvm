@@ -1,12 +1,12 @@
 package cmd
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/ava-labs/avalanchego/ids"
 	"github.com/ava-labs/hypersdk/crypto"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/auth"
 	hutils "github.com/ava-labs/hypersdk/utils"
+	"github.com/ava-labs/indexvm/auth"
 	"github.com/ava-labs/indexvm/client"
 	"github.com/ava-labs/indexvm/utils"
 )
@@ -59,12 +59,12 @@ func GetDefaultChain() (ids.ID, []string, error) {
 	return chainID, uris, nil
 }
 
-func CloseDatabase() error {
-	if db == nil {
-		return nil
-	}
-	if err := db.Close(); err != nil {
-		return fmt.Errorf("unable to close database: %w", err)
-	}
-	return nil
-}
+// func CloseDatabase() error {
+// 	if db == nil {
+// 		return nil
+// 	}
+// 	if err := db.Close(); err != nil {
+// 		return fmt.Errorf("unable to close database: %w", err)
+// 	}
+// 	return nil
+// }

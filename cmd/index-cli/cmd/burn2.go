@@ -29,14 +29,15 @@ func burn2Func(_ *cobra.Command, args []string) error {
 		log.Printf("err: %v", err)
 		return err
 	}
-	factory := auth.NewDirectFactory(priv)
+	factory := auth.NewED25519Factory(priv)
+	// factory := auth.NewDirectFactory(priv)
 
 	ctx := context.Background()
-	currentChainID, priv, factory, cli, err := defaultActor()
-	if err != nil {
-		return err
-	}
-	log.Printf("currentChainID: %v", currentChainID)
+	// currentChainID, priv, factory, cli, err := defaultActor()
+	// if err != nil {
+	// 	return err
+	// }
+	// log.Printf("currentChainID: %v", currentChainID)
 
 	// log.Printf("priv: %v", priv)
 	to, value, err := getBurn2Op(args)

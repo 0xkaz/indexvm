@@ -29,6 +29,7 @@ func init() {
 
 		consts.AuthRegistry.Register(&auth.Direct{}, auth.UnmarshalDirect),
 		consts.AuthRegistry.Register(&auth.Delegate{}, auth.UnmarshalDelegate),
+		consts.AuthRegistry.Register(&auth.ED25519{}, auth.UnmarshalED25519),
 		// test
 		consts.ActionRegistry.Register(&actions.SetData{}, actions.UnmarshalSetData),
 		consts.ActionRegistry.Register(&actions.AddData{}, actions.UnmarshalSetData),
