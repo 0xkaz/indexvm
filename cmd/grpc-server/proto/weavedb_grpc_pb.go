@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	"log"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -36,6 +37,7 @@ func NewDBClient(cc grpc.ClientConnInterface) DBClient {
 }
 
 func (c *dBClient) Query(ctx context.Context, in *WeaveDBRequest, opts ...grpc.CallOption) (*WeaveDBReply, error) {
+	log.Printf("Query RECV")
 	out := new(WeaveDBReply)
 	err := c.cc.Invoke(ctx, "/weavedb.DB/query", in, out, opts...)
 	if err != nil {
@@ -45,6 +47,7 @@ func (c *dBClient) Query(ctx context.Context, in *WeaveDBRequest, opts ...grpc.C
 }
 
 func (c *dBClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
+	log.Printf("SayHello RECV")
 	out := new(HelloReply)
 	err := c.cc.Invoke(ctx, "/weavedb.DB/sayHello", in, out, opts...)
 	if err != nil {
@@ -54,6 +57,7 @@ func (c *dBClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.
 }
 
 func (c *dBClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingReply, error) {
+	log.Printf("RECV: PING")
 	out := new(PingReply)
 	err := c.cc.Invoke(ctx, "/weavedb.DB/ping", in, out, opts...)
 	if err != nil {

@@ -104,28 +104,6 @@ func main() {
 
 		}))
 
-		// 	httpapp.Use(func(c *fiber.Ctx) error {
-		// 		log.Printf("custom middleware")
-		// 		headers:=c.GetReqHeaders()
-
-		// 		if (false||
-		// 			strings.Contains(headers["Content-Type"], "application/grpc-web") ||
-		// 			strings.Contains(headers["Access-Control-Request-Headers"], "x-grpc-web") ||
-		// 			headers["X-Grpc-Web"] == "1"||
-		// 			false) {
-		// 				log.Printf("grpc-webweb")
-
-		// 			return nil
-		// 		}
-		// 		return c.Next()
-		//  })
-
-		// httpapp.Get("/", func(c *fiber.Ctx) error {
-		// 	buildtime := gutils.GetBuildTime()
-		// 	sincebuild := gutils.GetHowOldInSec()
-		// 	return c.SendString(fmt.Sprintf("weavedb (build: %v; %d sec ago)", buildtime, sincebuild))
-		// })
-
 		httpapp.Get("/", func(c *fiber.Ctx) error {
 			buildtime := gutils.GetBuildTime()
 			sincebuild := gutils.GetHowOldInSec()
