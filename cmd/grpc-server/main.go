@@ -11,29 +11,17 @@ import (
 	proto "github.com/ava-labs/indexvm/cmd/grpc-server/proto"
 	server "github.com/ava-labs/indexvm/cmd/grpc-server/server"
 	gutils "github.com/ava-labs/indexvm/cmd/grpc-server/utils"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 
-	// "github.com/influxdata/influxdb/logger"
 	"github.com/soheilhy/cmux"
 	"google.golang.org/grpc/reflection"
 
-	// "weavedb-gprc-cache-proxy/app/libs/myaws"
-	// "weavedb-gprc-cache-proxy/app/libs/slack"
-	// "weavedb-gprc-cache-proxy/app/proto"
-	// "weavedb-gprc-cache-proxy/app/server"
-
-	// "weavedb-gprc-cache-proxy/app"
-
-	// adaptor "github.com/gofiber/adaptor/v2"
-	// fiber "github.com/gofiber/fiber/v2"
-	// cors "github.com/gofiber/fiber/v2/middleware/cors"
-	// logger "github.com/gofiber/fiber/v2/middleware/logger"
-
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	// "github.com/soheilhy/cmux"
+
 	"google.golang.org/grpc"
 )
 
@@ -41,9 +29,6 @@ func main() {
 	//
 	buildtime := gutils.GetBuildTime()
 	log.Printf("build: %v", buildtime)
-
-	// sincebuild := gutils.GetHowOldInSec()
-	// log.Printf("how old: %v sec ", sincebuild)
 
 	// prepare listeners with cmux
 	lis, err := net.Listen("tcp", ":3003")
@@ -81,10 +66,10 @@ func main() {
 		httpapp := fiber.New(fiber.Config{
 			ServerHeader: "Fiber",
 		})
-		// // httpapp.Use(logger.New())
-		// httpapp.Use(logger.New(logger.Config{
-		// 	Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
-		// }))
+
+		httpapp.Use(logger.New(logger.Config{
+			Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
+		}))
 
 		httpapp.Use(cors.New(cors.Config{
 			// AllowOrigins: "https://gofiber.io, https://gofiber.net",
@@ -99,12 +84,12 @@ func main() {
 
 			return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				// log.Println("log middleware")
-				if false ||
-					strings.Contains(r.Header.Get("Content-Type"), "application/grpc-web") ||
+				if strings.Contains(r.Header.Get("Content-Type"), "application/grpc-web") ||
 					strings.Contains(r.Header.Get("Access-Control-Request-Headers"), "x-grpc-web") ||
 					r.Header.Get("x-grpc-web") == "1" ||
 					r.Header.Get("X-Grpc-Web") == "1" ||
 					false {
+
 					log.Printf("grpc-web")
 
 					w.Header().Set("Access-Control-Allow-Origin", "*")

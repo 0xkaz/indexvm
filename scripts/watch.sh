@@ -44,9 +44,10 @@ do
     echo "Building index-cli in ./build/index-cli"
     go build -o ./build/index-cli ./cmd/index-cli
 
+    echo "Building grpc-server in ./build/grpc-server"
+    go build -o ./build/grpc-server ./cmd/grpc-server
+
     find ./build
-    # ./build/token-cli version
-    # ./build/weavedb-cli version
   fi
 
   LAST=`find . | egrep ".sh|.go" | grep -v 'build/'| xargs ls -l -D '%s' | awk '{print $6}' | sort -n | tail -n 1 `
