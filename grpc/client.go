@@ -1,8 +1,19 @@
 package grpc
 
+// import (
+// 	"context"
+// 	"flag"
+// 	"log"
+// 	"time"
+
+// 	"google.golang.org/grpc"
+
+// 	"google.golang.org/grpc/credentials/insecure"
+// )
+
 import (
 	"context"
-	"flag"
+	// "flag"
 	"log"
 	"time"
 
@@ -14,7 +25,7 @@ import (
 // var BACKEND_ADDR = string(os.Getenv("BACKEND_GRPC_NODE"))
 
 func init() {
-	flag.Parse()
+
 }
 
 const (
