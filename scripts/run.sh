@@ -178,6 +178,7 @@ fi
 killall avalanche-network-runner || true
 
 echo "launch avalanche-network-runner in the background"
+echo "BIN=$BIN"
 $BIN server \
 --log-level verbo \
 --port=":12352" \
@@ -205,6 +206,10 @@ function cleanup() {
   killall avalanche-network-runner
 }
 trap cleanup EXIT
+echo "MODE=${MODE}"
+echo "AVALANCHEGO_PATH=${AVALANCHEGO_PATH}"
+echo "AVALANCHEGO_PLUGIN_DIR=${AVALANCHEGO_PLUGIN_DIR}"
+echo "VERSION=${VERSION}"
 
 echo "running e2e tests"
 ./tests/e2e/e2e.test \

@@ -1,0 +1,51 @@
+package grpc
+
+import (
+	context "context"
+	"log"
+	"strings"
+
+	vmgrpc "github.com/ava-labs/indexvm/grpc"
+)
+
+type Server struct {
+	vmgrpc.UnimplementedDBServer
+}
+
+func (s *Server) SayHello(ctx context.Context, in *vmgrpc.HelloRequest) (*vmgrpc.HelloReply, error) {
+	log.Printf("===")
+	log.Printf("RECV: %v", in.GetName())
+	message := "Hello, " + in.GetName() + "!"
+	log.Printf("SEND: %v", message)
+	return &vmgrpc.HelloReply{Message: message}, nil
+}
+
+func (s *Server) Ping(ctx context.Context, in *vmgrpc.PingRequest) (*vmgrpc.PingReply, error) {
+
+	log.Printf("RECV: PING")
+	message := "PONG"
+	log.Printf("SEND: PONG")
+	return &vmgrpc.PingReply{Message: message}, nil
+}
+
+func (s *Server) Query(ctx context.Context, in *vmgrpc.WeaveDBRequest) (*vmgrpc.WeaveDBReply, error) {
+
+	_method := in.GetMethod()
+	_query := in.GetQuery()
+	_nocache := in.GetNocache()
+
+	_tmp := strings.Split(_method, "@")
+
+	if len(_tmp) != 2 {
+		// ERROR
+		log.Printf("ERROR: method parse error")
+		return &vmgrpc.WeaveDBReply{
+			Result: "method parse error",
+			Err:    "method parse error",
+		}, nil
+	}
+
+	// request backend gRPC Server
+	log.Printf("INFO request backend gRPC Server")
+	return vmgrpc.Query(_method, _query, _nocache)
+}
